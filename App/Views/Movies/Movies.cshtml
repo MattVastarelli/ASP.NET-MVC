@@ -1,0 +1,28 @@
+﻿@model App.ViewModels.MoviesViewModel
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Movies</h1>
+
+@if (Model.Movies.Count == 0)
+{
+    <p>There are no customers on record.</p>
+}
+@if (Model.Movies.Count > 0)
+{
+    <table>
+        <tr>
+            <th>Movies</th>
+        </tr>
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td><a href="Movies/Details/@movie.Id">@movie.Name</a></td>
+            </tr>
+        }
+    </table>
+}
+
+

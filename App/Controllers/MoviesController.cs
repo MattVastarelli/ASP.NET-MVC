@@ -9,51 +9,53 @@ using App.ViewModels;
 
 namespace App.Controllers
 {
+    [RoutePrefix("Movies")]
     public class MoviesController : Controller
     {
         // GET: Movies
-        public ActionResult Random()
+        public ActionResult Index()
         {
-            var movie = new Movie() {Name = "Post"};
-            var customers = new List<Customer>
+            // movie list
+            var movies = new List<Movie>
             {
-                new Customer {Name = "Customer 1"},
-                new Customer {Name = "Customer 2"}
+                new Movie {Name = "Shrek", Id = 1},
+                new Movie {Name = "Wall-e", Id = 2}
             };
 
-            var viewModel = new RandomMovieViewModel
+
+            var viewModel = new MoviesViewModel
             {
-                Movie = movie,
-                Customers = customers
+                Movies = movies
             };
 
-            return View(viewModel);
+            return View("Movies", viewModel);
         }
 
-        [Route("movies/released/{year}/{month:regex(\\d{4}):range(1, 12)}")]
-        public ActionResult ByReleaseDate(int year, int month)
+        //a given customers info
+        [HttpGet]
+        [Route("Details/{id}")]
+        public ActionResult Details(int id)
         {
-            return Content(year + "/" + month);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            return Content("id=" + id);
-        }
-
-        public ActionResult Index(int? pageIndex, string sortBy)
-        {
-            if (!pageIndex.HasValue)
+            // movie list
+            var movies = new List<Movie>
             {
-                pageIndex = 1;
-            }
+                new Movie {Name = "Shrek", Id = 1},
+                new Movie {Name = "Wall-e", Id = 2}
+            };
 
-            if (String.IsNullOrWhiteSpace(sortBy))
+            if (movies.Count >= id)
             {
-                sortBy = "Name";
-            }
+                var viewModel = new MovieDetailsViewModel()
+                {
+                    Movie = movies[id - 1]
+                };
 
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+                return View("MovieDetails", viewModel);
+            }
+            else
+            {
+                return new HttpNotFoundResult();
+            }
         }
     }
 }
