@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,15 +13,26 @@ namespace App.Controllers
     [RoutePrefix("Movies")]
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        //constructor
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        //dispose
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
         public ActionResult Index()
         {
             // movie list
-            var movies = new List<Movie>
-            {
-                new Movie {Name = "Shrek", Id = 1},
-                new Movie {Name = "Wall-e", Id = 2}
-            };
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+          
 
 
             var viewModel = new MoviesViewModel
@@ -37,17 +49,13 @@ namespace App.Controllers
         public ActionResult Details(int id)
         {
             // movie list
-            var movies = new List<Movie>
-            {
-                new Movie {Name = "Shrek", Id = 1},
-                new Movie {Name = "Wall-e", Id = 2}
-            };
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
 
-            if (movies.Count >= id)
+            if (movie != null)
             {
                 var viewModel = new MovieDetailsViewModel()
                 {
-                    Movie = movies[id - 1]
+                    Movie = movie
                 };
 
                 return View("MovieDetails", viewModel);

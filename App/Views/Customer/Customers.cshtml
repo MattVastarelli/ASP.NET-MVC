@@ -12,15 +12,21 @@
 }
 @if (Model.Customers.Count > 0)
 {
-    <table>
-        <tr>
-            <th>Customers</th>
-        </tr>
-        @foreach (var cust in Model.Customers)
-        {
+    <table class="table table-bordered table-hover">
+        <thead>
             <tr>
-                <td><a href="Customer/Details/@cust.Id">@cust.Name</a></td>
+                <th>Customers</th>
+                <th>Membership Type</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var cust in Model.Customers)
+            {
+                <tr>
+                    <td><a href="Customer/Details/@cust.Id">@cust.Name</a></td>
+                    <td>@cust.MembershipType.MembershipName</td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
