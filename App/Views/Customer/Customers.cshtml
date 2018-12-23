@@ -20,11 +20,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var cust in Model.Customers)
+            @foreach (var customer in Model.Customers)
             {
                 <tr>
-                    <td><a href="Customer/Details/@cust.Id">@cust.Name</a></td>
-                    <td>@cust.MembershipType.MembershipName</td>
+                    <td>@Html.ActionLink(customer.Name, "Edit", new {id = customer.Id})</td>
+                    <td>@customer.MembershipType.MembershipName</td>
                 </tr>
             }
         </tbody>

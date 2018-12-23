@@ -267,6 +267,7 @@
     <Compile Include="ViewModels\Customers.cs" />
     <Compile Include="ViewModels\MovieDetails.cs" />
     <Compile Include="ViewModels\Movies.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -331,6 +332,7 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Movies\Movies.cshtml" />
     <Content Include="Views\Movies\MovieDetails.cshtml" />
+    <Content Include="Views\Customer\CustomerForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

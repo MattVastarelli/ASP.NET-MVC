@@ -26,6 +26,40 @@ namespace App.Controllers
             _context.Dispose();
         }
 
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View("CustomerForm",viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.BirthDate = customer.BirthDate;
+                customerInDb.MembershipTypeID = customer.MembershipTypeID;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
+            
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customer");
+        }
+
         // GET: Customer
         public ActionResult Index()
         {
@@ -42,27 +76,22 @@ namespace App.Controllers
             return View("Customers",viewModel);
         }
 
-        //a given customers info
-        [HttpGet]
-        [Route("Details/{id}")]
-        public ActionResult Details(int id)
+        public ActionResult Edit(int? id)
         {
-            //all customers in the database in to a list
-            var customer =  _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            if (customer != null)
+            if (customer == null)
             {
-                var viewModel = new CustomerDetails
-                {
-                    Customer = customer
-                };
+                return HttpNotFound();
+            }
 
-                return View("Details", viewModel);
-            }
-            else
+            var viewModel = new CustomerFormViewModel
             {
-                return new HttpNotFoundResult();
-            }
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
         }
     }
 }
