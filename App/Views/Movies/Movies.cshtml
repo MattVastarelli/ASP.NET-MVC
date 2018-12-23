@@ -4,12 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Movies</h1>
+<h1 >Movies</h1>
 
 @if (Model.Movies.Count == 0)
 {
     <p>There are no customers on record.</p>
 }
+
+@Html.ActionLink("Add Movie", "New",null, new {@class="btn btn-primary"})
+
 @if (Model.Movies.Count > 0)
 {
     <table class="table table-bordered table-hover">
@@ -23,7 +26,7 @@
         @foreach (var movie in Model.Movies)
         {
             <tr>
-                <td><a href="Movies/Details/@movie.Id">@movie.Name</a></td>
+                <td>@Html.ActionLink(movie.Name,"Edit", new {id = movie.Id})</td>
                 <td>@movie.Genre.GenreName</td>
             </tr>
         }

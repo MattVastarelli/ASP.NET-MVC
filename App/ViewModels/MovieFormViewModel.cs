@@ -6,8 +6,9 @@ using App.Models;
 
 namespace App.ViewModels
 {
-    public class MovieDetailsViewModel
+    public class MovieFormViewModel
     {
+        public IEnumerable<Genre> Genres { get; set; }
         public Movie Movie { get; set; }
     }
 }

@@ -43,27 +43,62 @@ namespace App.Controllers
             return View("Movies", viewModel);
         }
 
-        //a given customers info
-        [HttpGet]
-        [Route("Details/{id}")]
-        public ActionResult Details(int id)
+        // edit
+        public ActionResult Edit(int? id)
         {
-            // movie list
-            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            var movie = _context.Movies.Single(m => m.Id == id);
 
-            if (movie != null)
+            if (movie == null)
             {
-                var viewModel = new MovieDetailsViewModel()
-                {
-                    Movie = movie
-                };
-
-                return View("MovieDetails", viewModel);
+                return HttpNotFound();
             }
             else
             {
-                return new HttpNotFoundResult();
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    Genres = _context.Genres.ToList(),
+                };
+
+                return View("MovieForm", viewModel);
             }
+        }
+
+
+        //add a new movie
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = genres
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                movie.DateAdded = DateTime.Today;
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+
+                movieInDb.Name = movie.Name;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.Stock = movie.Stock;
+                movieInDb.GenreID = movie.GenreID;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
         }
     }
 }
