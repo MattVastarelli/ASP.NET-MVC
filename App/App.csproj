@@ -253,6 +253,10 @@
     <Compile Include="Migrations\201812222241118_addMovies.Designer.cs">
       <DependentUpon>201812222241118_addMovies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812241947291_changemodel.cs" />
+    <Compile Include="Migrations\201812241947291_changemodel.Designer.cs">
+      <DependentUpon>201812241947291_changemodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -260,6 +264,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\MinMemberAge.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -391,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812222241118_addMovies.resx">
       <DependentUpon>201812222241118_addMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812241947291_changemodel.resx">
+      <DependentUpon>201812241947291_changemodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -25,6 +25,7 @@ namespace App.Models
 
         //display name
         [Display(Name = "Date of Birth")]
+        [MinMemberAge]
         public DateTime? BirthDate { get; set; }
     }
 }

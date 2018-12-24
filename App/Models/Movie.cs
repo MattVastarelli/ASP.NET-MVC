@@ -9,6 +9,8 @@ namespace App.Models
     public class Movie
     {
         public int Id { get; set;}
+
+        [Required]
         public string Name { get; set;}
 
         //Genre 
@@ -24,6 +26,7 @@ namespace App.Models
         public DateTime DateAdded { get; set; }
 
         [Display(Name = "Number in Stock")]
+        [Range(1, 20)]
         public int Stock { get; set; }
     }
 }
