@@ -54,9 +54,8 @@ namespace App.Controllers
             }
             else
             {
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movie,
                     Genres = _context.Genres.ToList(),
                 };
 
@@ -70,7 +69,7 @@ namespace App.Controllers
         {
             var genres = _context.Genres.ToList();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(new Movie())
             {
                 Genres = genres
             };
@@ -84,9 +83,8 @@ namespace App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movie,
                     Genres = _context.Genres.ToList(),
                 };
 

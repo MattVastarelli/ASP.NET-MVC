@@ -11,6 +11,7 @@ namespace App.Models
         public int Id { get; set;}
 
         [Required]
+        [StringLength(255)]
         public string Name { get; set;}
 
         //Genre 
@@ -19,6 +20,7 @@ namespace App.Models
 
         //FK
         [Display(Name = "Genre")]
+        [Required]
         public byte GenreID { get; set; }
 
         [Display(Name = "Release Date")]

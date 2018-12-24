@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201812241947291_changemodel.Designer.cs">
       <DependentUpon>201812241947291_changemodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812242015096_stringlen.cs" />
+    <Compile Include="Migrations\201812242015096_stringlen.Designer.cs">
+      <DependentUpon>201812242015096_stringlen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -399,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812241947291_changemodel.resx">
       <DependentUpon>201812241947291_changemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812242015096_stringlen.resx">
+      <DependentUpon>201812242015096_stringlen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
