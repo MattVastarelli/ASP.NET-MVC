@@ -30,17 +30,14 @@ namespace App.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            // movie list
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
-          
-
-
-            var viewModel = new MoviesViewModel
+            if (User.IsInRole(RoleName.CanManageMovies))
             {
-                Movies = movies
-            };
-
-            return View("Movies", viewModel);
+                return View("Movies");
+            }
+            else
+            {
+                return View("ReadOnly");
+            }
         }
 
         // edit
@@ -65,6 +62,7 @@ namespace App.Controllers
 
 
         //add a new movie
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Data.Entity;
 using System.Net.Http;
 using System.Web.Http;
 using App.DTOS;
@@ -21,7 +22,7 @@ namespace App.Controllers.API
 
         public IEnumerable<MoviesDTO> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MoviesDTO>);
+            return _context.Movies.Include(m => m.Genre).ToList().Select(Mapper.Map<Movie, MoviesDTO>);
         }
 
         public IHttpActionResult GetMovie(int id)

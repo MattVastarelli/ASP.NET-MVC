@@ -16,7 +16,7 @@ namespace App.DTOS
         public string Name { get; set;}
 
         //Genre 
-        public Genre Genre { get; set; }
+        public GenresDTO Genre { get; set; }
 
         //FK
         [Required]
