@@ -75,17 +75,7 @@ namespace App.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            //all customers in the database in to a list
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-            
-
-            //add the customers to the view model
-            var viewModel = new CustomersViewModel
-            {
-                Customers = customers
-            };
-
-            return View("Customers",viewModel);
+            return View("Customers");
         }
 
         public ActionResult Edit(int? id)
