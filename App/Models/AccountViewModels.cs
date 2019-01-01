@@ -12,6 +12,11 @@ namespace App.Models
         [Required]
         [Display(Name = "Drivers License")]
         public string DrivingLicense { get; set; }
+
+        [Display(Name = "Phone Number")]
+        [Required]
+        [MaxLength(50)]
+        public int PhoneNumber { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -71,6 +76,11 @@ namespace App.Models
         [Display(Name = "Driving License")]
         [Required]
         public string DrivingLicense { get; set; }
+
+        [Display(Name = "Phone Number")]
+        [Required]
+        [MaxLength(50)]
+        public int PhoneNumber { get; set; }
 
         [Required]
         [EmailAddress]

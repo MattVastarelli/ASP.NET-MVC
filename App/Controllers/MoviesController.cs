@@ -41,6 +41,7 @@ namespace App.Controllers
         }
 
         // edit
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int? id)
         {
             var movie = _context.Movies.Single(m => m.Id == id);
@@ -77,6 +78,7 @@ namespace App.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)

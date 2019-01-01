@@ -154,7 +154,10 @@ namespace App.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email, Email = model.Email, DrivingLicense  = model.DrivingLicense
+                    UserName = model.Email, 
+                    Email = model.Email, 
+                    DrivingLicense  = model.DrivingLicense,
+                    PhoneNumber = model.PhoneNumber.ToString(),
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -373,7 +376,10 @@ namespace App.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email, Email = model.Email, DrivingLicense = model.DrivingLicense
+                    UserName = model.Email, 
+                    Email = model.Email, 
+                    DrivingLicense = model.DrivingLicense,
+                    PhoneNumber = model.PhoneNumber.ToString(),
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
