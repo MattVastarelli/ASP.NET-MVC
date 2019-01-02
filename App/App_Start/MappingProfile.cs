@@ -23,6 +23,8 @@ namespace App.App_Start
             Mapper.CreateMap<MembershipType, MembershipTypeDTO>();
 
             Mapper.CreateMap<Genre, GenresDTO>();
+
+            Mapper.CreateMap<NewRentalDTO, Rental>();
         }
 
     }
