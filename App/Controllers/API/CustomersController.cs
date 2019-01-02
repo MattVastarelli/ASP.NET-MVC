@@ -21,10 +21,21 @@ namespace App.Controllers.API
         }
 
 
-        public IEnumerable<CustomerDTO> GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null)
         {
-            return _context.Customers.Include(c => c.MembershipType).ToList()
+            var customersQyery = _context.Customers
+                .Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                customersQyery = customersQyery.Where(c => c.Name.Contains(query));
+            }
+
+            var customerDtos = customersQyery
+                .ToList()
                 .Select(Mapper.Map<Customer, CustomerDTO>);
+
+            return Ok(customerDtos);
         }
 
         public IHttpActionResult GetCustomer(int id)

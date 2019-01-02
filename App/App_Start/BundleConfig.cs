@@ -15,6 +15,7 @@ namespace App
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/datatables.bootstrap.js",
                         "~/scripts/typeahead.bundle.js",
+                        "~/Scripts/toaster.js",
                         "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -30,6 +31,7 @@ namespace App
                       "~/Content/bootstrap.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/toastr.css",
                       "~/Content/typeahead.css"));
         }
     }
